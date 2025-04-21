@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
-
-namespace Localiza.Core.Responses
+﻿namespace Localiza.Core.Responses
 {
     public class PagedResponse<T> : Response<T>
     {

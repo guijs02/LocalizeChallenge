@@ -28,7 +28,7 @@ namespace Localize.TestE2E
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
             Assert.Equal("application/json", response.Content?.Headers?.ContentType?.MediaType);
         }
-        
+
         [Fact]
         public async Task Should_NOT_Create_Company_When_User_NOT_Authenticated()
         {
@@ -61,7 +61,7 @@ namespace Localize.TestE2E
         public async Task Should_GetAll_Companies_WithSuccess()
         {
             var token = await CreateLoginUser();
-            
+
             string cnpj = "68243096000233";
 
             _client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token?.Data);
@@ -72,8 +72,8 @@ namespace Localize.TestE2E
 
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
             Assert.Equal("application/json", response.Content?.Headers?.ContentType?.MediaType);
-        }    
-        
+        }
+
         [Fact]
         public async Task Should_NOT_GetAll_Companies_When_User_NOT_Authenticated()
         {
@@ -104,7 +104,7 @@ namespace Localize.TestE2E
                 Password = "123",
             };
 
-            
+
             var responseLogin = await _client.PostAsJsonAsync("api/v1/user/login", login);
 
             return await responseLogin.Content.ReadFromJsonAsync<Response<string>>();

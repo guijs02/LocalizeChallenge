@@ -6,8 +6,8 @@ using LocalizeApi.Services.Interfaces;
 
 namespace LocalizeApi.Services
 {
-    public class CompanyService(ICompanyRepository companyRepository, 
-                                IReceitaWsService receitaService) 
+    public class CompanyService(ICompanyRepository companyRepository,
+                                IReceitaWsService receitaService)
                                 : ICompanyService
     {
         private readonly ICompanyRepository _companyRepository = companyRepository;
@@ -17,8 +17,8 @@ namespace LocalizeApi.Services
         {
             var result = await _receitaService.GetCompanyDataAsync(cnpj);
 
-            if (!result.IsSuccess) 
-            return new Response<bool>(false, code:StatusCodes.Status502BadGateway, message: result.Message);
+            if (!result.IsSuccess)
+                return new Response<bool>(false, code: StatusCodes.Status502BadGateway, message: result.Message);
 
             return await _companyRepository.CreateAsync(result.Data, userId);
         }

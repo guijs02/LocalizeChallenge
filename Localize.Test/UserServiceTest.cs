@@ -51,8 +51,8 @@ namespace Localize.Test
             var result = await _service.CreateAsync(user);
 
             Assert.False(result?.Data);
-        }  
-        
+        }
+
         [Fact]
         public async Task LoginUserWithSuccess()
         {
@@ -67,7 +67,7 @@ namespace Localize.Test
 
             _repository.Setup(s => s.LoginAsync(It.IsAny<LoginUserRequest>()))
                                             .ReturnsAsync(new Response<bool>(true));
-            
+
             _tokenRepository.Setup(s => s.GenerateToken(It.IsAny<LoginUserRequest>()))
                                             .Returns(token);
 

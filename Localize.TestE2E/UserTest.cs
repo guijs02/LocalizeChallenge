@@ -1,6 +1,6 @@
-using System.Net.Http.Json;
-using System.Net;
 using Localiza.Core.Requests;
+using System.Net;
+using System.Net.Http.Json;
 
 namespace Localize.TestE2E
 {
@@ -30,9 +30,9 @@ namespace Localize.TestE2E
         }
 
         [Theory]
-        [InlineData("bad", "", "" )]
-        [InlineData("bad", null, null )]
-        [InlineData("bad", "", null )]
+        [InlineData("bad", "", "")]
+        [InlineData("bad", null, null)]
+        [InlineData("bad", "", null)]
         [InlineData("bad@", null, "")]
         [InlineData("", null, "")]
         [InlineData(null, null, null)]
@@ -62,7 +62,7 @@ namespace Localize.TestE2E
             };
 
             await _client.PostAsJsonAsync("api/v1/user/register", user);
-            
+
             var login = new LoginUserRequest
             {
                 Name = "gui",
@@ -87,7 +87,7 @@ namespace Localize.TestE2E
             };
 
             await _client.PostAsJsonAsync("api/v1/user/create-user", user);
-            
+
             var login = new LoginUserRequest
             {
                 Name = "gui",

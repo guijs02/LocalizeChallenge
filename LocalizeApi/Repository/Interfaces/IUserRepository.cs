@@ -5,7 +5,7 @@ namespace LocalizeApi.Repository.Interfaces
 {
     public interface IUserRepository
     {
-        Task<Response<bool>>  CreateAsync(CreateUserRequest request);
+        Task<Response<bool>> CreateAsync(CreateUserRequest request);
         Task<Response<bool>> LoginAsync(LoginUserRequest request);
     }
 }

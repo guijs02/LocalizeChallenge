@@ -1,12 +1,10 @@
-﻿using Azure.Core;
-using Domain.Entites;
+﻿using Domain.Entites;
 using Localiza.Core.Responses;
 using Localize.Core.Requests;
 using Localize.Core.Responses;
 using LocalizeApi.Context;
 using LocalizeApi.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
 
 namespace LocalizeApi.Repository
 {
@@ -56,7 +54,7 @@ namespace LocalizeApi.Repository
                              .Companies
                              .AsNoTracking()
                              .Where(x => x.UserId == userId);
-                             
+
                 var companies = query
                 .Skip((request.PageNumber - 1) * request.PageSize)
                 .Take(request.PageSize)

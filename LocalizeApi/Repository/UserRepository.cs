@@ -1,6 +1,5 @@
 ﻿using Localiza.Core.Requests;
 using Localiza.Core.Responses;
-using LocalizeApi.Context;
 using LocalizeApi.Models;
 using LocalizeApi.Repository.Interfaces;
 using Microsoft.AspNetCore.Identity;
