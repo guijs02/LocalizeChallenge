@@ -27,7 +27,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Domain\Localiza.Core.csproj" />
+    <ProjectReference Include="..\Core\Localize.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 

@@ -7,8 +7,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddAuthentication();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-
+builder.Services.AddContext(builder.Configuration);
 builder.Services.AddSwaggerGen();
+builder.Services.AddIdentityRole();
 builder.Services.ConfigJwtBearer(builder.Configuration);
 builder.Services.AddDependencies();
 builder.Services.AddSwaggerDocumentation();
@@ -34,3 +35,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+public partial class Program { }

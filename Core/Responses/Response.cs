@@ -7,16 +7,29 @@ using System.Threading.Tasks;
 
 namespace Localiza.Core.Responses
 {
-    public class Response<T>(
-                    T? data,
-                    int code = Configuration.DefaultStatusCode,
-                    string? message = null)
+    public class Response<T>
     {
-        public T? Data { get; set; } = data;
-        public string? Message { get; set; } = message;
-        public int StatusCode => code;
+        private int _code = Configuration.DefaultStatusCode;
+
+        [JsonConstructor]
+        public Response() => _code = Configuration.DefaultStatusCode;
+
+        public Response(
+                        T? data,
+                        int code = Configuration.DefaultStatusCode,
+                        string? message = null)
+        {
+            Data = data;
+            _code = code;
+            Message = message;
+        }
+
+        public T? Data { get; set; }
+        public string? Message { get; set; }
+
+        public int StatusCode => _code;
 
         [JsonIgnore]
-        public bool IsSuccess => code is >= 200 and <= 299;
+        public bool IsSuccess => _code is >= 200 and <= 299;
     }
 }

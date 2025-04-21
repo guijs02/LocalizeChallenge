@@ -1,14 +1,14 @@
 ﻿namespace Localiza.Core.Responses
 {
-    public readonly record struct ReceitaWsResponse(
+    public record ReceitaWsResponse(
         string Nome,
         string Fantasia,
         string Cnpj,
         string Situacao,
         string Abertura,
         string Tipo,
-        string NaturezaJuridica,
-        IEnumerable<AtividadePrincipal> Atividade_Principal,
+        string Natureza_Juridica,
+        List<AtividadePrincipal> Atividade_Principal,
         string Logradouro,
         string Numero,
         string Complemento,
@@ -18,9 +18,9 @@
         string Cep
     );
 
-    public struct AtividadePrincipal
+    public class AtividadePrincipal
     {
-        public string Codigo;
-        public string Texto;
+        public string Code { get; set; } = string.Empty; 
+        public string Text { get; set; } = string.Empty;
     }
 }

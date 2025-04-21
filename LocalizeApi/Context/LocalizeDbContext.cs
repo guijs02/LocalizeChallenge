@@ -9,7 +9,7 @@ namespace LocalizeApi.Context
     public class LocalizeDbContext(DbContextOptions<LocalizeDbContext> options)
                                     : IdentityDbContext<User, IdentityRole<Guid>, Guid>(options)
     {
-        public DbSet<Company> Module { get; set; } = null!;
+        public DbSet<Company> Companies { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

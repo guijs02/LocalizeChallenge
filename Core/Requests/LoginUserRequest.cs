@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Localiza.Core.Requests
@@ -15,5 +16,9 @@ namespace Localiza.Core.Requests
         public string Email { get; set; } = string.Empty;
         [Required]
         public string Password { get; set; } = string.Empty;
+        [JsonIgnore]
+        public Guid UserId { get; set; } 
+
+
     }
 }

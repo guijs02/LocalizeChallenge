@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace LocalizeApi.Controllers
 {
     [ApiController]
-    [Route("v1/[controller]")]
+    [Route("api/v1/[controller]")]
     public class UserController : ControllerBase
     {
         public readonly IUserService _userService;
@@ -27,7 +27,7 @@ namespace LocalizeApi.Controllers
             {
 
                 var result = await _userService.CreateAsync(request);
-                return StatusCode(result.StatusCode, result.Data);
+                return StatusCode(result.StatusCode, result);
             }
             catch (Exception e)
             {
@@ -41,7 +41,7 @@ namespace LocalizeApi.Controllers
             try
             {
                 var result = await _userService.LoginAsync(request);
-                return StatusCode(result.StatusCode, result.Data);
+                return StatusCode(result.StatusCode, result);
             }
             catch (Exception e)
             {

@@ -98,6 +98,8 @@ namespace LocalizeApi.Common
             service.AddScoped<ICompanyRepository, CompanyRepository>();
             service.AddScoped<ICompanyService, CompanyService>();
             service.AddScoped<IUserService, UserService>();
+            service.AddScoped<ITokenService, TokenService>();
+            service.AddScoped<IReceitaWsService, ReceitaWsService>().AddHttpClient("ReceitaWs", c => c.BaseAddress = new Uri("https://www.receitaws.com.br/v1/"));
 
             return service;
         }

@@ -9,7 +9,6 @@ namespace Localiza.Core.Responses
 {
     public class PagedResponse<T> : Response<T>
     {
-        [JsonConstructor]
         public PagedResponse(
                         T? data,
                         int totalCount,
