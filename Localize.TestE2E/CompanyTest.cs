@@ -17,8 +17,6 @@ namespace Localize.TestE2E
         [Fact]
         public async Task Should_Create_Company_WithSuccess()
         {
-
-            // Buscar os cursos cadastrados
             var token = await CreateLoginUser();
 
             string cnpj = "68243096000233";
@@ -30,6 +28,16 @@ namespace Localize.TestE2E
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
             Assert.Equal("application/json", response.Content?.Headers?.ContentType?.MediaType);
         }
+        
+        [Fact]
+        public async Task Should_NOT_Create_Company_When_User_NOT_Authenticated()
+        {
+            string cnpj = "68243096000233";
+
+            var response = await _client.PostAsJsonAsync("api/v1/company", new CreateCompanyRequest() { Cnpj = cnpj });
+
+            Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
+        }
 
         [Theory]
         [InlineData("bad")]
@@ -40,8 +48,6 @@ namespace Localize.TestE2E
         [InlineData("68243096")]
         public async Task Should_NOT_Create_Company_With_Wrong_CNPJ(string cnpj)
         {
-
-            // Buscar os cursos cadastrados
             var token = await CreateLoginUser();
 
             _client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token?.Data);
@@ -55,7 +61,7 @@ namespace Localize.TestE2E
         public async Task Should_GetAll_Companies_WithSuccess()
         {
             var token = await CreateLoginUser();
-            // Buscar os cursos cadastrados
+            
             string cnpj = "68243096000233";
 
             _client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token?.Data);
@@ -66,6 +72,18 @@ namespace Localize.TestE2E
 
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
             Assert.Equal("application/json", response.Content?.Headers?.ContentType?.MediaType);
+        }    
+        
+        [Fact]
+        public async Task Should_NOT_GetAll_Companies_When_User_NOT_Authenticated()
+        {
+            string cnpj = "68243096000233";
+
+            await _client.PostAsJsonAsync("api/v1/company", cnpj);
+
+            var response = await _client.GetAsync("api/v1/company");
+
+            Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
         }
 
         public async Task<Response<string>> CreateLoginUser()
@@ -77,7 +95,6 @@ namespace Localize.TestE2E
                 Password = "123",
             };
 
-            // Buscar os cursos cadastrados
             await _client.PostAsJsonAsync("api/v1/user/register", user);
 
             var login = new LoginUserRequest
@@ -87,7 +104,7 @@ namespace Localize.TestE2E
                 Password = "123",
             };
 
-            // Buscar os cursos cadastrados
+            
             var responseLogin = await _client.PostAsJsonAsync("api/v1/user/login", login);
 
             return await responseLogin.Content.ReadFromJsonAsync<Response<string>>();

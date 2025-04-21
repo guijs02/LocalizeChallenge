@@ -23,7 +23,6 @@ namespace Localize.TestE2E
                 Password = "1234",
             };
 
-            // Buscar os cursos cadastrados
             var response = await _client.PostAsJsonAsync("api/v1/user/register", user);
 
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
@@ -46,7 +45,6 @@ namespace Localize.TestE2E
                 Password = password,
             };
 
-            // Buscar os cursos cadastrados
             var response = await _client.PostAsJsonAsync("api/v1/user/register", user);
 
             Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
@@ -63,7 +61,6 @@ namespace Localize.TestE2E
                 Password = "123",
             };
 
-            // Buscar os cursos cadastrados
             await _client.PostAsJsonAsync("api/v1/user/register", user);
             
             var login = new LoginUserRequest
@@ -73,7 +70,6 @@ namespace Localize.TestE2E
                 Password = "123",
             };
 
-            // Buscar os cursos cadastrados
             var response = await _client.PostAsJsonAsync("api/v1/user/login", login);
 
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
@@ -90,7 +86,6 @@ namespace Localize.TestE2E
                 Password = "123",
             };
 
-            // Buscar os cursos cadastrados
             await _client.PostAsJsonAsync("api/v1/user/create-user", user);
             
             var login = new LoginUserRequest
@@ -100,7 +95,6 @@ namespace Localize.TestE2E
                 Password = "1233",
             };
 
-            // Buscar os cursos cadastrados
             var response = await _client.PostAsJsonAsync("api/v1/user/login", login);
 
             Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);

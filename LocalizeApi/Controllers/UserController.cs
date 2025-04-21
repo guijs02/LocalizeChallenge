@@ -23,30 +23,16 @@ namespace LocalizeApi.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> CreateUser(CreateUserRequest request)
         {
-            try
-            {
-
-                var result = await _userService.CreateAsync(request);
-                return StatusCode(result.StatusCode, result);
-            }
-            catch (Exception e)
-            {
-                return StatusCode(500, e.Message.ToString());
-            }
+            var result = await _userService.CreateAsync(request);
+            return StatusCode(result.StatusCode, result);
         }
 
         [HttpPost(Endpoints.LoginUser)]
         public async Task<IActionResult> Login(LoginUserRequest request)
         {
-            try
-            {
-                var result = await _userService.LoginAsync(request);
-                return StatusCode(result.StatusCode, result);
-            }
-            catch (Exception e)
-            {
-                return StatusCode(500, e.Message.ToString());
-            }
+
+            var result = await _userService.LoginAsync(request);
+            return StatusCode(result.StatusCode, result);
         }
     }
 }
